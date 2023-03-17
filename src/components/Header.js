@@ -8,7 +8,7 @@ import { useHistory, Link } from "react-router-dom";
 
 const Header = ({ children, hasHiddenAuthButtons }) => {
   const history = useHistory();
-  const [log, setLog] = useState(children);
+  const [log, setLog] = useState(localStorage.getItem("username"));
   console.log(log);
     return (
       <Box className="header">      
@@ -33,7 +33,10 @@ const Header = ({ children, hasHiddenAuthButtons }) => {
             <Stack direction="row" spacing={2} alignItems="center">              
             <Avatar alt={localStorage.getItem("username")} src="avatar.png" />              
             <p className="title">{localStorage.getItem("username")}</p>              
-            <Button                className="explore-button"                variant="text"                onClick={(e) => {
+            <Button                
+             className="explore-button"              
+             variant="text"                
+             onClick={(e) => {
                   localStorage.removeItem("username");
                   localStorage.removeItem("token");
                   localStorage.removeItem("balance");

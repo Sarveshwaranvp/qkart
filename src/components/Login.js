@@ -161,7 +161,8 @@ const Login = () => {
          {isLoading ? (
             <Box style={{display: 'flex', justifyContent: 'center'}}>            
             <CircularProgress/>            
-            </Box>          ): 
+            </Box>          
+            ): 
             (<Button 
             className="button" 
             variant="contained" 

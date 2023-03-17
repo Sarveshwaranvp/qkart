@@ -19,11 +19,9 @@ import "./Products.css";
 const Products = () => {
   return (
     <div>      
-      {localStorage.getItem("username") ? (
-      <Header hasHiddenAuthButtons={false} children />      
-      ) : (
-      <Header hasHiddenAuthButtons={false} children={false}/>      
-      )}
+      <Header>
+        
+      </Header>
     <Grid container>        
     <Grid item className="product-grid">          
     <Box className="hero">            
