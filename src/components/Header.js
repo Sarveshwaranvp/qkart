@@ -9,7 +9,7 @@ import { useHistory, Link } from "react-router-dom";
 const Header = ({ children, hasHiddenAuthButtons }) => {
   const history = useHistory();
   const [log, setLog] = useState(localStorage.getItem("username"));
-  console.log(log);
+  
     return (
       <Box className="header">      
       <Box className="header-title">        
@@ -27,7 +27,9 @@ const Header = ({ children, hasHiddenAuthButtons }) => {
         >          
         Back to explore
         </Button>      
-        ) : (
+        ) : 
+        (
+         <> <Box width="30vw">{children}</Box>
         <Box>          
           {log ? (
             <Stack direction="row" spacing={2} alignItems="center">              
@@ -70,7 +72,7 @@ const Header = ({ children, hasHiddenAuthButtons }) => {
               </Stack>          
               )}
         </Box>      
-        )}
+        </>)}
     </Box>
     );
 };
