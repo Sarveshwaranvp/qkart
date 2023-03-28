@@ -5,18 +5,17 @@ import Box from "@mui/material/Box";
 import React from "react";
 import "./Header.css";
 import { useHistory, Link } from "react-router-dom";
-
 const Header = ({ children, hasHiddenAuthButtons }) => {
   const history = useHistory();
   const [log, setLog] = useState(localStorage.getItem("username"));
   
-    return (
-      <Box className="header">      
-      <Box className="header-title">        
-      <img src="logo_light.svg" 
-      alt="QKart-icon"></img>      
-      </Box>      
-      {hasHiddenAuthButtons ? (
+  return (
+    <Box className="header">      
+    <Box className="header-title"> 
+    <Link to="/">      
+    <img src="logo_light.svg" alt="QKart-icon">
+      </img>  </Link> 
+       </Box>      {hasHiddenAuthButtons ? (
         <Button          
         className="explore-button"          
         startIcon={<ArrowBackIcon />}
@@ -24,32 +23,33 @@ const Header = ({ children, hasHiddenAuthButtons }) => {
           onClick={(e) => {
             history.push("/");
           }}
-        >          
-        Back to explore
-        </Button>      
-        ) : 
+        >          Back to explore
+        </Button>      ) 
+        : 
         (
-         <> <Box width="30vw">{children}</Box>
+          <>        <Box width="30vw" justifyContent='center'>{children}</Box>
         <Box>          
           {log ? (
-            <Stack direction="row" spacing={2} alignItems="center">              
-            <Avatar alt={localStorage.getItem("username")} src="avatar.png" />              
-            <p className="title">{localStorage.getItem("username")}</p>              
-            <Button                
-             className="explore-button"              
-             variant="text"                
-             onClick={(e) => {
+            <>
+            <Stack direction="row" spacing={2} alignItems="center">             
+             <Avatar alt={localStorage.getItem("username")} src="avatar.png" />             
+              <p className="title">{localStorage.getItem("username")}</p>            
+                <Button                
+                className="explore-button"               
+                 variant="text"                
+                 onClick={(e) => {
                   localStorage.removeItem("username");
                   localStorage.removeItem("token");
                   localStorage.removeItem("balance");
                   setLog(false);
                   history.push("/");
                 }}
-              >                
+              > 
+                            
               LOGOUT
               </Button>            
-              </Stack>          
-              ) : (
+              </Stack>  </>         ) : 
+              (
             <Stack direction="row" spacing={2} alignItems="center">              
             <Button                
             className="explore-button"                
@@ -59,22 +59,20 @@ const Header = ({ children, hasHiddenAuthButtons }) => {
                 }}
               >                
               LOGIN
-              </Button>              
-              <Button                
-              className="button"                
-              variant="contained"                
-              onClick={(e) => {
+              </Button>            
+                <Button              
+                  className="button"               
+                   variant="contained"                
+                   onClick={(e) => {
                   history.push("/register");
                 }}
-              >                
-              REGISTER
+              >                REGISTER
               </Button>            
-              </Stack>          
-              )}
+              </Stack>         
+               )}
         </Box>      
         </>)}
-    </Box>
+    </Box>  
     );
 };
-
 export default Header;
